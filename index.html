@@ -964,18 +964,18 @@ body.light-mode .nav-lang-btn:hover{
           <div class="form-field">
             <div class="form-field-wrap">
               <svg class="form-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <input type="text" class="form-input" placeholder="ID Pengirim / Nama" data-id-ph="ID Pengirim / Nama" data-en-ph="Sender ID / Name" required>
+              <input type="text" name="nama"" class="form-input" placeholder="ID Pengirim / Nama" data-id-ph="ID Pengirim / Nama" data-en-ph="Sender ID / Name" required>
             </div>
           </div>
           <div class="form-field">
             <div class="form-field-wrap">
               <svg class="form-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <input type="email" class="form-input" placeholder="Frekuensi Email" data-id-ph="Frekuensi Email" data-en-ph="Email Frequency" required>
+              <input type="email" name="email" class="form-input" placeholder="Frekuensi Email" data-id-ph="Frekuensi Email" data-en-ph="Email Frequency" required>
             </div>
           </div>
           <div class="form-field">
             <div class="form-field-wrap textarea-wrap">
-              <textarea class="form-textarea" placeholder="Data Transmisi Pesan" data-id-ph="Data Transmisi Pesan" data-en-ph="Message Transmission Data" rows="5" required></textarea>
+              <textarea name="pesan" class="form-textarea" placeholder="Data Transmisi Pesan" data-id-ph="Data Transmisi Pesan" data-en-ph="Message Transmission Data" rows="5" required></textarea>
             </div>
           </div>
           <button type="submit" class="btn-submit">
@@ -1098,17 +1098,56 @@ const observer = new IntersectionObserver((entries)=>{
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
 // ═══ FORM SUBMIT ═══
-function handleSubmit(e){
-  e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
-  const successMsg = currentLang==='id' ? 'TRANSMISI TERKIRIM ✓' : 'TRANSMISSION SENT ✓';
-  btn.querySelector('span').textContent = successMsg;
-  btn.style.background = 'linear-gradient(135deg,#4fc3a1,#3da88a)';
-  setTimeout(()=>{
-    btn.querySelector('span').textContent = currentLang==='id' ? 'INISIASI TRANSMISI' : 'INITIATE TRANSMISSION';
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
+function handleSubmit(event) {
+  event.preventDefault();
+  
+  // 1. Identifikasi Form dan Tombol
+  const form = event.target;
+  const btn = form.querySelector('.btn-submit');
+  const btnText = btn.querySelector('span') || btn; // Ambil elemen teks di dalam tombol
+  
+  // 2. Ambil Data dari Input
+  const nama = form.nama.value;
+  const email = form.email.value;
+  const pesan = form.pesan.value;
+
+  // 3. Susun Pesan WhatsApp
+  const nomorWA = "6285777054607"; // Nomor Anda
+  const teksPesan = 
+    `*TRANSMISI PORTFOLIO BARU*\n` +
+    `----------------------------\n` +
+    `*Nama:* ${nama}\n` +
+    `*Email:* ${email}\n` +
+    `*Pesan:* ${pesan}\n` +
+    `----------------------------`;
+
+  // Encode pesan agar aman dikirim via URL
+  const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksPesan)}`;
+
+  // 4. Animasi Tombol
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = "MENGIRIM... <span style='margin-left:10px;'>🚀</span>";
+  btn.style.opacity = "0.7";
+  btn.style.pointerEvents = "none";
+
+  // 5. Eksekusi Pengiriman
+  setTimeout(() => {
+    // Buka WhatsApp di tab baru
+    window.open(urlWA, '_blank');
+
+    // Kembalikan tombol ke status sukses
+    btn.innerHTML = "TRANSMISI TERKIRIM ✓";
+    btn.style.background = "linear-gradient(135deg, #4fc3a1, #3da88a)";
+    btn.style.opacity = "1";
+
+    // Reset form setelah 2 detik
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.style.background = "";
+      btn.style.pointerEvents = "auto";
+      form.reset();
+    }, 3000);
+  }, 800);
 }
 
 // ═══ STATS COUNTER ═══
