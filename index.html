@@ -1531,32 +1531,25 @@ updateClock();
   Fancybox.bind("[data-fancybox]", {});
 </script>
   
-<script data-goatcounter="https://aprojek.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://aprojek.goatcounter.com/count" 
+        async src="//gc.zgo.at/count.js"></script>
 
 <script>
-    (function() {
-        var checkGoat = setInterval(function() {
-            if (window.goatcounter && window.goatcounter.visit_count) {
-                clearInterval(checkGoat);
-                
-                // Memasukkan angka ke dalam ID #stats-visitor
-                window.goatcounter.visit_count({
-                    append: '#stats-visitor',
-                    no_onclick: true 
-                });
+  function updateVisitorCount() {
+    // Mengambil data dari endpoint total.json milik aprojek
+    fetch('https://aprojek.goatcounter.com/counter/total.json')
+      .then(response => response.json())
+      .then(data => {
+        const countElement = document.getElementById('stats-visitor');
+        // Mengganti angka 0 dengan angka asli dari server
+        // toLocaleString() membuat angka ribuan jadi lebih rapi (contoh: 1,200)
+        countElement.innerText = data.count.toLocaleString();
+      })
+      .catch(error => console.log('Belum ada data atau akses ditolak'));
+  }
 
-                // Membersihkan teks tambahan (jika ada) agar hanya angka yang muncul
-                setTimeout(function() {
-                    let el = document.getElementById('stats-visitor');
-                    if (el) {
-                        // Menghapus karakter non-angka agar tampilan bersih
-                        let countOnly = el.innerText.replace(/[^0-9]/g, '');
-                        if (countOnly) el.innerText = countOnly;
-                    }
-                }, 1000);
-            }
-        }, 100);
-    })();
+  // Jalankan fungsi saat halaman selesai dimuat
+  window.addEventListener('load', updateVisitorCount);
 </script>
 </body>
 </html>
