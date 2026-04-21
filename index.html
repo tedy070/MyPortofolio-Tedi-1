@@ -1532,25 +1532,16 @@ updateClock();
   Fancybox.bind("[data-fancybox]", {});
 </script>
 <script>
-  // Fungsi untuk mengambil data pengunjung dari GoatCounter
-  (function() {
-    var r = new XMLHttpRequest();
-    r.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        try {
-          var data = JSON.parse(this.responseText);
-          // Mengambil angka 'count' dari JSON dan memasukkannya ke elemen HTML
-          // Menggunakan replace agar angka ribuan lebih enak dibaca (contoh: 1,250)
-          document.getElementById('stats-visitor').innerText = data.count.toLocaleString() || '0';
-        } catch(e) {
-          console.error("Gagal memproses data pengunjung");
+    var t = setInterval(function() {
+        if (window.goatcounter && window.goatcounter.visit_count) {
+            clearInterval(t)
+            // Menargetkan ID stats-visitor agar angka muncul di dalam kotak
+            window.goatcounter.visit_count({append: '#stats-visitor'})
         }
-      }
-    };
-    // Mengambil data dari endpoint publik aprojek
-    r.open('GET', 'https://aprojek.goatcounter.com/counter/total.json', true);
-    r.send();
-  })();
+    }, 100)
+</script>
+<script data-goatcounter="https://aprojek.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js">
 </script>
 </body>
 </html>
