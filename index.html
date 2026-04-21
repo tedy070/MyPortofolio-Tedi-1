@@ -725,6 +725,16 @@ body.light-mode .nav-lang-btn:hover{
 .proj-link:focus ~ .proj-img-wrapper img {
   transform: scale(1.2);
 }
+
+/* Menghilangkan teks "views" bawaan GoatCounter agar hanya angkanya yang tampil */
+#stats-visitor span {
+    display: none !important;
+}
+
+/* Memastikan angka yang muncul tetap berwarna Teal */
+#stats-visitor {
+    color: #4fc3a1 !important;
+}
 </style>
 </head>
 <body>
@@ -1150,8 +1160,9 @@ body.light-mode .nav-lang-btn:hover{
             <circle cx="12" cy="12" r="3"></circle>
         </svg>
         
-        <span style="color: #94a3b8; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.3px;">
-            Views: <strong id="stats-visitor" style="color: #4fc3a1; margin-left: 4px; font-weight: 700;">...</strong>
+        <span style="color: #94a3b8; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.3px; display: flex; align-items: center;">
+            <span style="margin-right: 4px;">Views:</span> 
+            <strong id="stats-visitor" style="color: #4fc3a1; font-weight: 700;">...</strong>
         </span>
     </div>
 </div>
@@ -1535,21 +1546,22 @@ updateClock();
         async src="//gc.zgo.at/count.js"></script>
 
 <script>
-  function updateVisitorCount() {
-    // Mengambil data dari endpoint total.json milik aprojek
-    fetch('https://aprojek.goatcounter.com/counter/total.json')
-      .then(response => response.json())
-      .then(data => {
-        const countElement = document.getElementById('stats-visitor');
-        // Mengganti angka 0 dengan angka asli dari server
-        // toLocaleString() membuat angka ribuan jadi lebih rapi (contoh: 1,200)
-        countElement.innerText = data.count.toLocaleString();
-      })
-      .catch(error => console.log('Belum ada data atau akses ditolak'));
-  }
+    var checkGoat = setInterval(function() {
+        // Cek apakah script GoatCounter sudah siap
+        if (window.goatcounter && window.goatcounter.visit_count) {
+            clearInterval(checkGoat);
+            
+            // Hapus loading/angka 0 sebelumnya
+            const target = document.getElementById('stats-visitor');
+            if (target) target.innerText = '';
 
-  // Jalankan fungsi saat halaman selesai dimuat
-  window.addEventListener('load', updateVisitorCount);
+            // Perintah GoatCounter untuk mengisi angka ke dalam ID kita
+            window.goatcounter.visit_count({
+                append: '#stats-visitor', // Targetkan ke ID pill Anda
+                no_onclick: true          // Agar angka tidak bisa diklik
+            });
+        }
+    }, 200);
 </script>
 </body>
 </html>
