@@ -889,55 +889,51 @@ body.light-mode .nav-lang-btn:hover{
 
   .about-stats {
   display: flex;
-  justify-content: center; /* Mengetengahkan di desktop */
-  gap: 30px;
-  margin-top: 40px;
-  flex-wrap: wrap; /* Kunci utama: Agar elemen turun saat layar sempit */
+  justify-content: space-between; /* Menjaga jarak antar elemen secara merata */
+  align-items: flex-start;
+  gap: 10px; /* Jarak antar kolom lebih kecil agar muat di HP */
+  margin-top: 30px;
+  width: 100%;
+  flex-wrap: nowrap; /* PAKSA tetap menyamping, jangan biarkan turun */
 }
 
 .about-stat {
-  flex: 1;
-  min-width: 140px; /* Lebar minimum agar tidak terlalu gepeng di HP */
-  max-width: 200px;
+  flex: 1; /* Memberikan porsi lebar yang sama rata untuk setiap angka */
   text-align: center;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.03); /* Sentuhan glassmorphism */
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.3s ease;
-}
-
-.about-stat:hover {
-  transform: translateY(-5px);
-  border-color: var(--teal);
+  padding: 10px 5px; /* Padding lebih ramping */
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  min-width: 0; /* Penting agar elemen bisa mengecil di bawah ukuran kontennya */
 }
 
 .about-stat-num {
-  /* Font akan menyesuaikan antara 24px hingga 36px tergantung lebar layar */
-  font-size: clamp(24px, 5vw, 36px); 
+  /* Menggunakan clamp agar ukuran font menyesuaikan lebar layar secara otomatis */
+  /* Di HP terkecil sekitar 18px, di desktop hingga 32px */
+  font-size: clamp(18px, 4.5vw, 32px); 
   font-weight: 800;
   color: var(--teal);
-  margin-bottom: 8px;
-  display: block;
+  margin-bottom: 4px;
+  white-space: nowrap; /* Angka tidak akan terpotong ke baris baru */
 }
 
 .about-stat-label {
-  font-size: 12px;
+  /* Font label mengecil di HP agar tidak memenuhi ruang */
+  font-size: clamp(9px, 2.5vw, 12px);
   color: var(--text3);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  line-height: 1.4;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  word-wrap: break-word; /* Label teks panjang akan turun ke bawah jika perlu */
 }
 
-/* Penyesuaian khusus untuk HP (Layar di bawah 480px) */
-@media (max-width: 480px) {
+/* Penyesuaian khusus layar sangat kecil (iPhone SE / Fold) */
+@media (max-width: 360px) {
   .about-stats {
-    gap: 15px; /* Mempersempit jarak antar box */
+    gap: 5px;
   }
-  
   .about-stat {
-    min-width: calc(50% - 15px); /* Menampilkan 2 kolom di HP jika memungkinkan */
-    padding: 15px 10px;
+    padding: 8px 2px;
   }
 }
 </style>
