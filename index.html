@@ -480,6 +480,115 @@ section{padding:100px 60px;}
 .kontak-info-label{font-size:10px;font-weight:600;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
 .kontak-info-val{font-size:13px;font-weight:500;color:var(--text);}
 
+  /* Container Card */
+.kontak-info-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+/* Efek Cahaya Belakang saat Hover */
+.kontak-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(79, 195, 161, 0.05), transparent);
+  transition: 0.5s;
+}
+
+.kontak-info-card:hover {
+  background: rgba(79, 195, 161, 0.05);
+  border-color: rgba(79, 195, 161, 0.4);
+  transform: translateX(8px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.kontak-info-card:hover::before {
+  left: 100%;
+}
+
+/* Ikon dengan Efek Glow */
+.kontak-info-icon-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.kontak-info-icon {
+  width: 46px;
+  height: 46px;
+  background: rgba(79, 195, 161, 0.1);
+  border: 1px solid rgba(79, 195, 161, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+  position: relative;
+  z-index: 2;
+  transition: 0.3s;
+}
+
+.icon-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; height: 100%;
+  background: var(--teal);
+  filter: blur(15px);
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+.kontak-info-card:hover .icon-glow {
+  opacity: 0.3;
+}
+
+.kontak-info-card:hover .kontak-info-icon {
+  background: var(--teal);
+  color: #000;
+  transform: rotate(-5deg);
+}
+
+/* Detail Teks */
+.kontak-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kontak-info-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text3);
+  font-weight: 600;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.kontak-info-card:hover .kontak-info-label {
+  opacity: 1;
+  color: var(--teal);
+}
+
+.kontak-info-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
 /* Right panel — form */
 .kontak-right{padding:40px 36px;}
 .kontak-form-title{
@@ -1140,30 +1249,37 @@ body.light-mode .nav-lang-btn:hover{
           <div class="kontak-status-dot"></div>
           SYSTEM STATUS: ONLINE
         </div>
-        <a href="mailto:tedyborez@gmail.com" class="kontak-info-card" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
-          <div class="kontak-info-icon" style="flex-shrink: 0;">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-            </svg>
-           </div>
-           <div style="display: flex; flex-direction: column;">
-           <div class="kontak-info-label" data-id="Email Saya" data-en="Email Me" style="font-size: 12px; opacity: 0.7;">Email Saya</div>
-           <div class="kontak-info-val" style="font-weight: bold; font-size: 12px;">tedyborez@gmail.com</div>
-         </div>
-        </a>
-        <a href="https://wa.me/6285777054607" class="kontak-info-card" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
-           <div class="kontak-info-icon" style="flex-shrink: 0;">
-             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-             </svg>
-           </div>
-           <div style="display: flex; flex-direction: column;">
-           <div class="kontak-info-label" data-id="Chat WhatsApp" data-en="Chat WhatsApp" style="font-size: 12px; opacity: 0.7;">Chat WhatsApp</div>
-           <div class="kontak-info-val" style="font-weight: bold; font-size: 12px;">+62 857-7705-4607</div>
-          </div>
-        </a>
+        <a href="mailto:tedyborez@gmail.com" class="kontak-info-card group">
+    <div class="kontak-info-icon-wrapper">
+      <div class="kontak-info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
       </div>
+      <div class="icon-glow"></div>
+    </div>
+    <div class="kontak-details">
+      <div class="kontak-info-label" data-id="Email Saya" data-en="Email Me">Email Saya</div>
+      <div class="kontak-info-val">tedyborez@gmail.com</div>
+    </div>
+  </a>
+
+  <a href="https://wa.me/6285777054607" class="kontak-info-card group" target="_blank" rel="noopener noreferrer">
+    <div class="kontak-info-icon-wrapper">
+      <div class="kontak-info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+      </div>
+      <div class="icon-glow"></div>
+    </div>
+    <div class="kontak-details">
+      <div class="kontak-info-label" data-id="Chat WhatsApp" data-en="Chat WhatsApp">Chat WhatsApp</div>
+      <div class="kontak-info-val">+62 857-7705-4607</div>
+    </div>
+  </a>
+</div>
       <!-- Right -->
       <div class="kontak-right">
         <div class="kontak-form-title">
