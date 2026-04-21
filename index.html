@@ -886,6 +886,60 @@ body.light-mode .nav-lang-btn:hover{
   fill: #f87171;
   stroke: #f87171;
 }
+
+  .about-stats {
+  display: flex;
+  justify-content: center; /* Mengetengahkan di desktop */
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap; /* Kunci utama: Agar elemen turun saat layar sempit */
+}
+
+.about-stat {
+  flex: 1;
+  min-width: 140px; /* Lebar minimum agar tidak terlalu gepeng di HP */
+  max-width: 200px;
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03); /* Sentuhan glassmorphism */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.about-stat:hover {
+  transform: translateY(-5px);
+  border-color: var(--teal);
+}
+
+.about-stat-num {
+  /* Font akan menyesuaikan antara 24px hingga 36px tergantung lebar layar */
+  font-size: clamp(24px, 5vw, 36px); 
+  font-weight: 800;
+  color: var(--teal);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.about-stat-label {
+  font-size: 12px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+/* Penyesuaian khusus untuk HP (Layar di bawah 480px) */
+@media (max-width: 480px) {
+  .about-stats {
+    gap: 15px; /* Mempersempit jarak antar box */
+  }
+  
+  .about-stat {
+    min-width: calc(50% - 15px); /* Menampilkan 2 kolom di HP jika memungkinkan */
+    padding: 15px 10px;
+  }
+}
 </style>
 </head>
 <body>
@@ -1010,19 +1064,20 @@ body.light-mode .nav-lang-btn:hover{
         <p data-id="Perjalanan saya dimulai setelah lulus SMK, yang menjadi titik awal pembentukan disiplin dan etos kerja saya. Visi saya ke depan adalah menjadi pribadi yang memiliki nilai guna tinggi dan profesionalisme yang berintegritas dalam setiap tanggung jawab yang saya emban. Misi saya adalah untuk terus belajar, beradaptasi dengan perubahan, dan memberikan dedikasi terbaik guna menciptakan lingkungan kerja yang produktif serta memberikan dampak positif bagi orang-orang di sekitar saya.." data-en="My journey began after graduating from vocational high school, which became the starting point for developing my discipline and work ethic. My vision for the future is to become a person of high utility and professional integrity in every responsibility I undertake. My mission is to continue learning, adapting to change, and dedicating my best to creating a productive work environment and making a positive impact on those around me.">Perjalanan saya dimulai setelah lulus SMK, yang menjadi titik awal pembentukan disiplin dan etos kerja saya. Visi saya ke depan adalah menjadi pribadi yang memiliki nilai guna tinggi dan profesionalisme yang berintegritas dalam setiap tanggung jawab yang saya emban. Misi saya adalah untuk terus belajar, beradaptasi dengan perubahan, dan memberikan dedikasi terbaik guna menciptakan lingkungan kerja yang produktif serta memberikan dampak positif bagi orang-orang di sekitar saya.</p>
         <p data-id="Menjadikan pengalaman MASA LALU sebagai pembelajaran, MASA KINI sebagai dedikasi dalam bekerja, dan MASA DEPAN sebagai orientasi untuk mencapai hasil yang maksimal." data-en="Make PAST experiences as learning, PRESENT as dedication in working, and FUTURE as orientation to achieve maximum results.">Menjadikan pengalaman MASA LALU sebagai pembelajaran, MASA KINI sebagai dedikasi dalam bekerja, dan MASA DEPAN sebagai orientasi untuk mencapai hasil yang maksimal.</p>
       </div>
-      <div class="about-stats">
-        <div class="about-stat">
-          <div class="about-stat-num">24+</div>
-          <div class="about-stat-label" data-id="Tahun Umur" data-en="Years of Age">Tahun Umur</div>
-        </div>
-        <div class="about-stat">
-          <div class="about-stat-num">4+</div>
-          <div class="about-stat-label" data-id="Tahun Pengalaman" data-en="Years Experience">Tahun Pengalaman</div>
-        </div>
-        <div class="about-stat">
-          <div class="about-stat-num">100%</div>
-          <div class="about-stat-label" data-id="Upskiling/Reskilling" data-en="Upskiling/Reskilling">Upskiling/Reskilling</div>
-        </div>
+   <div class="about-stat">
+      <div class="about-stat-num">24+</div>
+      <div class="about-stat-label" data-id="Tahun Umur" data-en="Years of Age">Tahun Umur</div>
+    </div>
+  
+    <div class="about-stat">
+      <div class="about-stat-num">4+</div>
+      <div class="about-stat-label" data-id="Tahun Pengalaman" data-en="Years Experience">Tahun Pengalaman</div>
+     </div>
+  
+     <div class="about-stat">
+       <div class="about-stat-num">100%</div>
+       <div class="about-stat-label" data-id="Dedikasi" data-en="Dedication">Dedikasi</div>
+       </div>
       </div>
       <a href="https://drive.google.com/file/d/1Y3CbBUknHvZCFHaa8U21qDqkvUpR865g" 
         class="about-cv-btn" 
