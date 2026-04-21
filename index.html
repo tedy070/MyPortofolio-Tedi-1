@@ -726,36 +726,50 @@ body.light-mode .nav-lang-btn:hover{
   transform: scale(1.2);
 }
 
+#stats-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  color: #888;
+}
+
 #view-counter {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  color: #888;
+  gap: 5px;
+  padding-right: 12px;
+}
+
+.divider {
+  width: 1px;
+  height: 14px;
+  background: #e0e0e0;
+  margin: 0 12px;
 }
 
 #like-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 18px;
-  border: 1px solid #e0e0e0;
-  border-radius: 999px;
-  background: white;
+  gap: 5px;
+  background: none;
+  border: none;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: #888;
-  transition: all 0.2s;
+  padding: 0;
+  transition: color 0.2s;
 }
 
 #like-btn:hover {
-  border-color: #f87171;
   color: #f87171;
 }
 
 #like-btn.liked {
-  background: #fff1f1;
-  border-color: #f87171;
   color: #f87171;
 }
 
@@ -1181,19 +1195,23 @@ body.light-mode .nav-lang-btn:hover{
         </form>
       </div>
 
-      <button id="like-btn" onclick="handleLike()">
-       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      <div id="stats-bar">
+      <div id="view-counter">
+       <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
        </svg>
-       Like <span id="like-count">...</span>
-     </button>
+        <span id="view-count">...</span> Views
+       </div>
 
-     <div id="view-counter">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-       <circle cx="12" cy="12" r="3"/>
-      </svg>
-       Views: <span id="view-count">...</span>
+       <div class="divider"></div>
+
+       <button id="like-btn" onclick="handleLike()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span id="like-count">...</span> Like
+      </button>
      </div>
     </div>
   </div>
