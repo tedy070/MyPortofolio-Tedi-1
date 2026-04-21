@@ -736,6 +736,19 @@ body.light-mode .nav-lang-btn:hover{
     color: #4fc3a1 !important;
     font-style: normal;
 }
+
+  /* Sembunyikan semua elemen tambahan yang dimasukkan GoatCounter */
+#stats-visitor * {
+    display: none !important;
+    font-size: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Pastikan angka utama tetap muncul dan berwarna Teal */
+#stats-visitor {
+    display: inline-block;
+    color: #4fc3a1 !important;
+}
 </style>
 </head>
 <body>
@@ -1546,50 +1559,39 @@ updateClock();
 <script data-goatcounter="https://aprojek.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 <script>
-  (function() {
-    var checkGoat = setInterval(function() {
-      if (window.goatcounter && window.goatcounter.visit_count) {
-        clearInterval(checkGoat);
+    (function() {
+        var checkGoat = setInterval(function() {
+            if (window.goatcounter && window.goatcounter.visit_count) {
+                clearInterval(checkGoat);
 
-        // Ambil elemen target
-        var el = document.getElementById('stats-visitor');
-        if (el) el.innerText = ''; // Kosongkan placeholder '...'
+                window.goatcounter.visit_count({
+                    append: '#stats-visitor',
+                    no_onclick: true
+                });
 
-        // Panggil angka dari GoatCounter
-        window.goatcounter.visit_count({
-          append: '#stats-visitor',
-          no_onclick: true
-        });
+                // Fungsi pembersih agresif
+                var forceClean = function() {
+                    var el = document.getElementById('stats-visitor');
+                    if (el) {
+                        // Ambil hanya karakter angka
+                        var num = el.innerText.replace(/[^0-9]/g, '');
+                        if (num && el.innerText !== num) {
+                            // Masukkan format ribuan Indonesia
+                            el.innerText = parseInt(num).toLocaleString('id-ID');
+                        }
+                    }
+                };
 
-        // Observer: Membersihkan teks "views" secara instan saat muncul
-        var observer = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-            if (mutation.addedNodes.length > 0) {
-              var raw = el.innerText || '';
-              // Jika terdeteksi huruf (seperti 'v' dari 'views'), bersihkan segera
-              if (/[a-zA-Z]/.test(raw)) {
-                var num = raw.replace(/[^0-9]/g, '');
-                if (num) {
-                  el.innerText = parseInt(num).toLocaleString('id-ID');
-                }
-              }
+                // Jalankan pembersihan berulang kali dalam 3 detik pertama
+                var counter = 0;
+                var loopClean = setInterval(function() {
+                    forceClean();
+                    counter++;
+                    if (counter > 20) clearInterval(loopClean); 
+                }, 200);
             }
-          });
-        });
-
-        // Mulai memantau perubahan pada elemen stats-visitor
-        observer.observe(el, { childList: true, subtree: true });
-
-        // Backup pembersih (jika observer gagal)
-        setTimeout(function() {
-          var raw = el.innerText || '';
-          var num = raw.replace(/[^0-9]/g, '');
-          if (num) el.innerText = parseInt(num).toLocaleString('id-ID');
-          observer.disconnect(); // Berhenti memantau setelah 5 detik
-        }, 5000);
-      }
-    }, 150);
-  })();
+        }, 150);
+    })();
 </script>
 </body>
 </html>
