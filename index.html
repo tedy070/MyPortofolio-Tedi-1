@@ -1142,6 +1142,19 @@ body.light-mode .nav-lang-btn:hover{
           </button>
         </form>
       </div>
+
+      <div class="visitor-wrapper" style="margin: 30px 0; text-align: center;">
+    <div style="display: inline-flex; align-items: center; background: rgba(79, 195, 161, 0.08); border: 1px solid rgba(79, 195, 161, 0.2); padding: 6px 16px; border-radius: 30px; backdrop-filter: blur(4px);">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="#4fc3a1" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; opacity: 0.8;">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        
+        <span style="color: #94a3b8; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.3px;">
+            Views: <strong id="stats-visitor" style="color: #4fc3a1; margin-left: 4px; font-weight: 700;">...</strong>
+        </span>
+    </div>
+     </div>
     </div>
   </div>
 </section>
@@ -1518,17 +1531,32 @@ updateClock();
   Fancybox.bind("[data-fancybox]", {});
 </script>
   
+<script data-goatcounter="https://aprojek.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 <script>
-    var t = setInterval(function() {
-        if (window.goatcounter && window.goatcounter.visit_count) {
-            clearInterval(t)
-            window.goatcounter.visit_count({append: 'body'})
-        }
-    }, 100)
-</script>
-<script data-goatcounter="https://aprojek.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js">
-  
+    (function() {
+        var checkGoat = setInterval(function() {
+            if (window.goatcounter && window.goatcounter.visit_count) {
+                clearInterval(checkGoat);
+                
+                // Memasukkan angka ke dalam ID #stats-visitor
+                window.goatcounter.visit_count({
+                    append: '#stats-visitor',
+                    no_onclick: true 
+                });
+
+                // Membersihkan teks tambahan (jika ada) agar hanya angka yang muncul
+                setTimeout(function() {
+                    let el = document.getElementById('stats-visitor');
+                    if (el) {
+                        // Menghapus karakter non-angka agar tampilan bersih
+                        let countOnly = el.innerText.replace(/[^0-9]/g, '');
+                        if (countOnly) el.innerText = countOnly;
+                    }
+                }, 1000);
+            }
+        }, 100);
+    })();
 </script>
 </body>
 </html>
