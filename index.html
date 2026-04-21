@@ -1543,34 +1543,53 @@ updateClock();
   Fancybox.bind("[data-fancybox]", {});
 </script>
   
-<script>
-    var checkGoat = setInterval(function() {
-        if (window.goatcounter && window.goatcounter.visit_count) {
-            clearInterval(checkGoat);
-            
-            // Panggil fungsi bawaan
-            window.goatcounter.visit_count({
-                append: '#stats-visitor',
-                no_onclick: true
-            });
+<script data-goatcounter="https://aprojek.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-            // Logika pembersihan teks "views"
-            var cleanTries = 0;
-            var cleaner = setInterval(function() {
-                var el = document.getElementById('stats-visitor');
-                if (el && el.innerText.includes('view')) {
-                    // Hanya ambil angka saja
-                    var num = el.innerText.replace(/[^0-9]/g, '');
-                    if (num) {
-                        el.innerText = parseInt(num).toLocaleString('id-ID');
-                        clearInterval(cleaner); // Berhenti jika sudah bersih
-                    }
+<script>
+  (function() {
+    var checkGoat = setInterval(function() {
+      if (window.goatcounter && window.goatcounter.visit_count) {
+        clearInterval(checkGoat);
+
+        // Ambil elemen target
+        var el = document.getElementById('stats-visitor');
+        if (el) el.innerText = ''; // Kosongkan placeholder '...'
+
+        // Panggil angka dari GoatCounter
+        window.goatcounter.visit_count({
+          append: '#stats-visitor',
+          no_onclick: true
+        });
+
+        // Observer: Membersihkan teks "views" secara instan saat muncul
+        var observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length > 0) {
+              var raw = el.innerText || '';
+              // Jika terdeteksi huruf (seperti 'v' dari 'views'), bersihkan segera
+              if (/[a-zA-Z]/.test(raw)) {
+                var num = raw.replace(/[^0-9]/g, '');
+                if (num) {
+                  el.innerText = parseInt(num).toLocaleString('id-ID');
                 }
-                cleanTries++;
-                if (cleanTries > 20) clearInterval(cleaner); // Berhenti setelah 4 detik jika gagal
-            }, 200);
-        }
-    }, 100);
+              }
+            }
+          });
+        });
+
+        // Mulai memantau perubahan pada elemen stats-visitor
+        observer.observe(el, { childList: true, subtree: true });
+
+        // Backup pembersih (jika observer gagal)
+        setTimeout(function() {
+          var raw = el.innerText || '';
+          var num = raw.replace(/[^0-9]/g, '');
+          if (num) el.innerText = parseInt(num).toLocaleString('id-ID');
+          observer.disconnect(); // Berhenti memantau setelah 5 detik
+        }, 5000);
+      }
+    }, 150);
+  })();
 </script>
 </body>
 </html>
