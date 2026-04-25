@@ -1006,6 +1006,19 @@ body.light-mode .nav-lang-btn:hover{
     padding: 18px;
   }
 }
+
+  /* Override untuk dark mode */
+#stats-bar {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text2, #8b9dc3);
+}
+.divider {
+  background: rgba(255,255,255,0.1);
+}
+#like-btn {
+  color: var(--text2, #8b9dc3);
+}
 </style>
 </head>
 <body>
@@ -1834,13 +1847,11 @@ updateClock();
   // Inisialisasi Fancybox agar membaca atribut data-fancybox
   Fancybox.bind("[data-fancybox]", {});
 </script>
-  
-<!-- Firebase SDK -->
+  <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
-
 <script>
-  const firebaseConfig = {
+  firebase.initializeApp({
     apiKey: "AIzaSyAmiPmFWgHnvLqNVNaykgrk1gkmaVyd1Go",
     authDomain: "portofolio-tedi.firebaseapp.com",
     databaseURL: "https://portofolio-tedi-default-rtdb.firebaseio.com",
@@ -1848,44 +1859,42 @@ updateClock();
     storageBucket: "portofolio-tedi.firebasestorage.app",
     messagingSenderId: "435243696299",
     appId: "1:435243696299:web:62632334479656070437ee"
-  };
-
-  firebase.initializeApp(firebaseConfig);
+  });
   const db = firebase.database();
 
-  // ── VIEWS ──
-  const viewsRef = db.ref('views');
+  const viewsRef = db.ref('porto_1/views');
+  const likesRef = db.ref('porto_1/likes');
+  const LIKED_KEY = 'liked_porto_1';
+
   viewsRef.transaction(val => (val || 0) + 1);
   viewsRef.on('value', snap => {
-    document.getElementById('view-count').textContent =
-      (snap.val() || 0).toLocaleString('id-ID');
+    const el = document.getElementById('view-count');
+    if (el) el.textContent = (snap.val() || 0).toLocaleString('id-ID');
   });
-
-  // ── LIKES ──
-  const likesRef = db.ref('likes');
   likesRef.on('value', snap => {
-    document.getElementById('like-count').textContent =
-      (snap.val() || 0).toLocaleString('id-ID');
+    const el = document.getElementById('like-count');
+    if (el) el.textContent = (snap.val() || 0).toLocaleString('id-ID');
   });
-
+  if (localStorage.getItem(LIKED_KEY) === 'yes') {
+    window.addEventListener('load', () => {
+      const btn = document.getElementById('like-btn');
+      if (btn) btn.classList.add('liked');
+    });
+  }
   function handleLike() {
     const btn = document.getElementById('like-btn');
-
-    if (localStorage.getItem('liked-portofolio-tedi') === 'yes') {
-      document.getElementById('like-count').textContent = 'Sudah like!';
-      setTimeout(() => {
-        likesRef.once('value', snap => {
-          document.getElementById('like-count').textContent =
-            (snap.val() || 0).toLocaleString('id-ID');
-        });
-      }, 1500);
+    const countEl = document.getElementById('like-count');
+    if (localStorage.getItem(LIKED_KEY) === 'yes') {
+      const orig = countEl.textContent;
+      countEl.textContent = 'Sudah like!';
+      setTimeout(() => { countEl.textContent = orig; }, 1500);
       return;
     }
-
     likesRef.transaction(val => (val || 0) + 1);
-    localStorage.setItem('liked-portofolio-tedi', 'yes');
-    btn.classList.add('liked');
+    localStorage.setItem(LIKED_KEY, 'yes');
+    if (btn) btn.classList.add('liked');
   }
+</script>
 </script>
 </body>
 </html>
