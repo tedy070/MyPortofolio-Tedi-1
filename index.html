@@ -1019,6 +1019,51 @@ body.light-mode .nav-lang-btn:hover{
 #like-btn {
   color: var(--text2, #8b9dc3);
 }
+
+  /* Sembunyikan hamburger di desktop */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.nav-hamburger svg { width: 28px; height: 28px; }
+
+@media screen and (max-width: 768px) {
+  .nav-hamburger {
+    display: block; /* Tampilkan di mobile */
+    order: 2; /* Atur posisi jika perlu */
+  }
+
+  .nav-links {
+    display: none; /* Sembunyikan menu default */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Sesuaikan dengan tinggi navbar */
+    left: 0;
+    width: 100%;
+    background: var(--bg-color, #fff); /* Gunakan variabel warna tema Anda */
+    padding: 20px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  /* Munculkan menu saat class 'show' aktif */
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+
+  .nav-right {
+    order: 3;
+  }
+}
 </style>
 </head>
 <body>
@@ -1048,6 +1093,30 @@ body.light-mode .nav-lang-btn:hover{
         <span id="lang-label">ID</span>
       </button>
     </div>
+  </div>
+</nav>
+
+  <nav id="main-nav">
+  <div class="nav-logo">Tedi<span>.</span></div>
+  
+  <button class="nav-hamburger" id="hamburger-btn" onclick="toggleMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+
+  <div class="nav-links" id="nav-links-container">
+    <a href="#beranda" class="active" data-id="Beranda" data-en="Home">Beranda</a>
+    <a href="#tentang" data-id="Tentang" data-en="About">Tentang</a>
+    <a href="#proyek" data-id="Proyek" data-en="Projects">Proyek</a>
+    <a href="#kontak" data-id="Kontak" data-en="Contact">Kontak</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="nav-controls">
+      </div>
   </div>
 </nav>
 
@@ -1960,6 +2029,17 @@ updateClock();
     if (btn) btn.classList.add('liked');
   };
 })();
+
+  function toggleMenu() {
+  const navLinks = document.getElementById('nav-links-container');
+  navLinks.classList.toggle('show');
+  
+  // Opsional: Tutup menu saat salah satu link diklik
+  const links = navLinks.querySelectorAll('a');
+  links.forEach(link => {
+    link.onclick = () => navLinks.classList.remove('show');
+  });
+}
 </script>
 </body>
 </html>
