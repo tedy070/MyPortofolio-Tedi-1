@@ -927,51 +927,6 @@ body.light-mode .nav-lang-btn:hover{
   word-wrap: break-word; /* Label teks panjang akan turun ke bawah jika perlu */
 }
 
-  /* Sembunyikan hamburger di desktop */
-.nav-hamburger {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-}
-
-.nav-hamburger svg { width: 28px; height: 28px; }
-
-@media screen and (max-width: 768px) {
-  .nav-hamburger {
-    display: block; /* Tampilkan di mobile */
-    order: 2; /* Atur posisi jika perlu */
-  }
-
-  .nav-links {
-    display: none; /* Sembunyikan menu default */
-    flex-direction: column;
-    position: absolute;
-    top: 70px; /* Sesuaikan dengan tinggi navbar */
-    left: 0;
-    width: 100%;
-    background: var(--bg-color, #fff); /* Gunakan variabel warna tema Anda */
-    padding: 20px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-    z-index: 999;
-  }
-
-  /* Munculkan menu saat class 'show' aktif */
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links a {
-    margin: 10px 0;
-    font-size: 1.2rem;
-  }
-
-  .nav-right {
-    order: 3;
-  }
-}
-
 /* Penyesuaian khusus layar sangat kecil (iPhone SE / Fold) */
 @media (max-width: 360px) {
   .about-stats {
