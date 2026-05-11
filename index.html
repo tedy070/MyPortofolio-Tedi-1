@@ -779,8 +779,13 @@ body.light-mode .nav-lang-btn:hover{
   footer{flex-direction:column;gap:12px;text-align:center;padding:24px;}
 }
 
-  /* --- RESPONSIVE DESIGN FOR MOBILE --- */
-@media screen and (max-width: 768px) {
+  /* ── Mobile ── */
+@media (max-width: 768px) {
+  /* Nav */
+  .nav-center { display: none !important; }
+  .btn-hire { display: none !important; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: flex; }
   
   /* 1. Atur Layout Utama menjadi Vertikal */
   .hero-section {
