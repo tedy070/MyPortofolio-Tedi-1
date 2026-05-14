@@ -1105,6 +1105,313 @@ body.light-mode .hamburger span {
   }
 }
 
+/* ══ TESTIMONIAL SECTION ══ */
+#testimonial {
+  background: var(--bg);
+  padding: 110px 80px;
+  overflow: hidden;
+}
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.testimonial-title {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+.testimonial-title .accent { color: var(--teal); }
+.testimonial-sub {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.testimonial-sub-desc {
+  font-size: 15px;
+  color: var(--text2);
+  margin-bottom: 50px;
+}
+
+/* ── MARQUEE TICKER ── */
+.testimonial-ticker-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+.testimonial-ticker-wrap::before,
+.testimonial-ticker-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.testimonial-ticker-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+.testimonial-ticker-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+.testimonial-ticker {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: testimonial-scroll 40s linear infinite;
+}
+.testimonial-ticker:hover { animation-play-state: paused; }
+
+@keyframes testimonial-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── AUDIENCE CARD ── */
+.audience-card {
+  flex-shrink: 0;
+  width: 300px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+  position: relative;
+  transition: border-color .3s, box-shadow .3s;
+}
+.audience-card:hover {
+  border-color: var(--border2);
+  box-shadow: 0 8px 40px rgba(79,195,161,0.08);
+}
+.audience-card-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 14px;
+}
+.audience-card-stars svg {
+  width: 14px; height: 14px;
+  fill: #f5c518;
+  color: #f5c518;
+}
+.audience-card-text {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.65;
+  margin-bottom: 18px;
+  font-style: italic;
+}
+.audience-card-text::before { content: '"'; }
+.audience-card-text::after  { content: '"'; }
+.audience-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.audience-card-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.audience-card-name {
+  font-size: 13px; font-weight: 700; color: var(--text);
+}
+.audience-card-company {
+  font-size: 11px; color: var(--text3); margin-top: 2px;
+}
+.audience-card-new {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: rgba(79,195,161,0.15);
+  border: 1px solid rgba(79,195,161,0.4);
+  color: var(--teal);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 7px; border-radius: 100px;
+  text-transform: uppercase;
+}
+
+/* ── FORM AUDIENCE ASSESSMENT ── */
+.audience-form-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 40px 44px;
+}
+.audience-form-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 6px;
+}
+.audience-form-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.audience-form-desc {
+  font-size: 14px;
+  color: var(--text2);
+  margin-bottom: 28px;
+}
+
+/* Preview card inside form */
+.audience-preview {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+  position: relative;
+}
+.audience-preview-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--teal);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 14px;
+}
+.audience-preview-badge svg { width: 12px; height: 12px; }
+.audience-preview-text {
+  font-size: 14px;
+  color: var(--text2);
+  font-style: italic;
+  margin-bottom: 14px;
+  min-height: 22px;
+}
+.audience-preview-footer {
+  display: flex; align-items: center; gap: 10px;
+}
+.audience-preview-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.audience-preview-name { font-size: 13px; font-weight: 700; color: var(--text); }
+.audience-preview-company { font-size: 11px; color: var(--text3); }
+
+/* Star rating input */
+.star-rating {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.star-rating input { display: none; }
+.star-rating label {
+  cursor: pointer;
+  font-size: 28px;
+  color: var(--border2);
+  transition: color .15s, transform .15s;
+  line-height: 1;
+}
+.star-rating label:hover,
+.star-rating label.active,
+.star-rating input:checked ~ label { color: #f5c518; }
+.star-rating label:hover { transform: scale(1.15); }
+
+/* Form inputs in testimonial form */
+.audience-inputs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.audience-input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  color: var(--text);
+  font-family: var(--font);
+  outline: none;
+  transition: border-color .2s, background .2s;
+}
+.audience-input::placeholder { color: var(--text3); }
+.audience-input:focus {
+  border-color: rgba(79,195,161,0.5);
+  background: rgba(79,195,161,0.04);
+}
+.audience-textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  color: var(--text);
+  font-family: var(--font);
+  outline: none;
+  resize: none;
+  height: 110px;
+  margin-bottom: 20px;
+  transition: border-color .2s, background .2s;
+}
+.audience-textarea::placeholder { color: var(--text3); }
+.audience-textarea:focus {
+  border-color: rgba(79,195,161,0.5);
+  background: rgba(79,195,161,0.04);
+}
+.btn-audience-submit {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #c850f9, #ff4b7c);
+  border: none;
+  color: #fff;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all .2s;
+  font-family: var(--font);
+}
+.btn-audience-submit:hover {
+  background: linear-gradient(135deg, #d460ff, #ff6090);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(200,80,249,0.3);
+}
+.btn-audience-submit svg { width: 16px; height: 16px; }
+.btn-audience-submit.sending { opacity: .7; pointer-events: none; }
+.btn-audience-submit.success {
+  background: linear-gradient(135deg, #4fc3a1, #3da88a);
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  #testimonial { padding: 70px 24px; }
+  .audience-form-wrap { padding: 28px 20px; }
+  .audience-inputs-row { grid-template-columns: 1fr; }
+}
+
+/* Light mode adaptations */
+body.light-mode .audience-card { background: #fff; }
+body.light-mode .audience-form-wrap { background: #fff; }
+body.light-mode .audience-preview { background: rgba(0,0,0,0.03); }
+body.light-mode .audience-input,
+body.light-mode .audience-textarea {
+  background: rgba(0,0,0,0.03);
+  color: var(--text);
+}
+
   /* Override untuk dark mode */
 #stats-bar {
   background: rgba(255,255,255,0.05);
@@ -1128,6 +1435,7 @@ body.light-mode .hamburger span {
     <a href="#beranda" class="active" data-id="Beranda" data-en="Home">Beranda</a>
     <a href="#tentang" data-id="Tentang" data-en="About">Tentang</a>
     <a href="#proyek" data-id="Proyek" data-en="Projects">Proyek</a>
+    <a href="#testimonial" data-id="Testimonial" data-en="Testimonial">Testimonial</a>
     <a href="#kontak" data-id="Kontak" data-en="Contact">Kontak</a>
   </div>
   <div class="nav-right">
@@ -1163,6 +1471,7 @@ body.light-mode .hamburger span {
   <a href="#beranda" class="active" onclick="closeMobileNav()">🏠 Beranda</a>
   <a href="#tentang" onclick="closeMobileNav()">👤 Tentang</a>
   <a href="#proyek" onclick="closeMobileNav()">💼 Proyek</a>
+  <a href="#testimonial" onclick="closeMobileNav()">⭐ Testimonial</a>
   <a href="#kontak" onclick="closeMobileNav()">✉️ Kontak</a>
 </div>
 
@@ -1613,6 +1922,162 @@ body.light-mode .hamburger span {
     </div> <!-- Penutup proyek-grid -->
   </div> <!-- Penutup section-inner -->
 </section> <!-- Penutup section -->
+
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="section-inner">
+    <div class="testimonial-header fade-in">
+      <div class="testimonial-sub" data-id="TESTIMONIAL" data-en="TESTIMONIAL">TESTIMONIAL</div>
+      <h2 class="testimonial-title"><span class="accent" data-id="Audience" data-en="Audience">Audience</span> <span data-id="Assessment" data-en="Assessment">Assessment</span></h2>
+    </div>
+
+    <!-- Scrolling cards ticker -->
+    <div class="testimonial-ticker-wrap fade-in fade-in-delay-1">
+      <div class="testimonial-ticker" id="testimonial-ticker">
+        <!-- Cards will be injected by JS from Firebase -->
+        <!-- Placeholder cards while loading -->
+        <div class="audience-card">
+          <div class="audience-card-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="audience-card-text">Sangat profesional dan hasilnya melebihi ekspektasi kami. Bekerja dengan Tedi adalah pengalaman luar biasa.</div>
+          <div class="audience-card-footer">
+            <div class="audience-card-avatar">A</div>
+            <div>
+              <div class="audience-card-name">Ahmad R.</div>
+              <div class="audience-card-company">PT. Teknologi Maju</div>
+            </div>
+          </div>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="audience-card-text">UI/UX yang dibuat sangat clean dan responsif. Klien kami sangat puas dengan hasil akhirnya.</div>
+          <div class="audience-card-footer">
+            <div class="audience-card-avatar">S</div>
+            <div>
+              <div class="audience-card-name">Siti Nurhaliza</div>
+              <div class="audience-card-company">Creative Agency</div>
+            </div>
+          </div>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" style="fill:rgba(255,255,255,0.15);color:rgba(255,255,255,0.15)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="audience-card-text">Komunikasi yang bagus, cepat tanggap, dan selalu memberikan solusi kreatif untuk setiap tantangan.</div>
+          <div class="audience-card-footer">
+            <div class="audience-card-avatar">B</div>
+            <div>
+              <div class="audience-card-name">Budi Santoso</div>
+              <div class="audience-card-company">Startup Lokal</div>
+            </div>
+          </div>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="audience-card-text">Hasil kerja sangat memuaskan! Portofolio yang dibangun sangat modern dan mencerminkan kepribadian yang inovatif.</div>
+          <div class="audience-card-footer">
+            <div class="audience-card-avatar">D</div>
+            <div>
+              <div class="audience-card-name">Dewi Pratiwi</div>
+              <div class="audience-card-company">Digital Marketing Co.</div>
+            </div>
+          </div>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="audience-card-text">Tedi sangat detail dalam setiap aspek pekerjaan. Tidak perlu banyak revisi karena hasilnya sudah bagus dari awal.</div>
+          <div class="audience-card-footer">
+            <div class="audience-card-avatar">R</div>
+            <div>
+              <div class="audience-card-name">Rizky Aditya</div>
+              <div class="audience-card-company">Freelance Designer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Audience Assessment -->
+    <div class="audience-form-wrap fade-in fade-in-delay-2">
+      <div class="audience-form-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span data-id="TINGGALKAN ULASAN" data-en="LEAVE A REVIEW">TINGGALKAN ULASAN</span>
+      </div>
+      <h3 class="audience-form-title" data-id="Tinggalkan Ulasan" data-en="Leave a Review">Tinggalkan Ulasan</h3>
+      <p class="audience-form-desc" data-id="Bagikan pengalaman bekerja sama dengan saya" data-en="Share your experience working with me">Bagikan pengalaman bekerja sama dengan saya</p>
+
+      <!-- Live Preview -->
+      <div class="audience-preview">
+        <div class="audience-preview-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span data-id="PRATINJAU LANGSUNG" data-en="LIVE PREVIEW">PRATINJAU LANGSUNG</span>
+        </div>
+        <div class="audience-preview-text" id="preview-text"><em data-id="Ulasan Anda akan muncul di sini..." data-en="Your review will appear here...">Ulasan Anda akan muncul di sini...</em></div>
+        <div class="audience-preview-footer">
+          <div class="audience-preview-avatar" id="preview-avatar">?</div>
+          <div>
+            <div class="audience-preview-name" id="preview-name" data-id="Nama Anda" data-en="Your Name">Nama Anda</div>
+            <div class="audience-preview-company" id="preview-company" data-id="Perusahaan" data-en="Company">Perusahaan</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Star Rating -->
+      <div class="star-rating" id="star-rating-input">
+        <input type="radio" name="rating" id="star5" value="5">
+        <label for="star5" title="5 bintang">★</label>
+        <input type="radio" name="rating" id="star4" value="4">
+        <label for="star4" title="4 bintang">★</label>
+        <input type="radio" name="rating" id="star3" value="3">
+        <label for="star3" title="3 bintang">★</label>
+        <input type="radio" name="rating" id="star2" value="2">
+        <label for="star2" title="2 bintang">★</label>
+        <input type="radio" name="rating" id="star1" value="1">
+        <label for="star1" title="1 bintang">★</label>
+      </div>
+
+      <!-- Inputs -->
+      <div class="audience-inputs-row">
+        <input type="text" id="audience-name" class="audience-input" placeholder="Nama Anda" data-id-ph="Nama Anda" data-en-ph="Your Name" maxlength="50">
+        <input type="text" id="audience-company" class="audience-input" placeholder="Perusahaan" data-id-ph="Perusahaan" data-en-ph="Company" maxlength="60">
+      </div>
+      <textarea id="audience-message" class="audience-textarea" placeholder="Ceritakan pengalaman Anda..." data-id-ph="Ceritakan pengalaman Anda..." data-en-ph="Tell your experience..." maxlength="300"></textarea>
+
+      <button class="btn-audience-submit" id="btn-send-assessment" onclick="submitAudienceAssessment()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <span data-id="Kirim Ulasan" data-en="Send Review">Kirim Ulasan</span>
+      </button>
+    </div>
+
+  </div>
+</section>
 
 <!-- KONTAK -->
 <section id="kontak">
@@ -2208,6 +2673,219 @@ document.addEventListener('keydown', function(e) {
       '200px circle at ' + cx + 'px ' + cy + 'px,' +
       'rgba(32,210,160,0.15) 0%,transparent 70%) !important;}';
   });
+})();
+</script>
+<script>
+// ══ AUDIENCE ASSESSMENT — FIREBASE RTDB ══
+(function() {
+  // Wait for Firebase to be ready
+  function initTestimonial() {
+    if (typeof firebase === 'undefined' || !firebase.database) {
+      setTimeout(initTestimonial, 100);
+      return;
+    }
+    const db = firebase.database();
+    const assessRef = db.ref('audience_assessments');
+
+    // ── Star rating reverse order (CSS trick alternative — JS approach) ──
+    // Stars are rendered 5→1 in HTML so clicking works naturally with flex-direction:row-reverse
+    // We handle it in JS instead for simpler HTML
+    let selectedRating = 5;
+    const starLabels = document.querySelectorAll('#star-rating-input label');
+    const starInputs = document.querySelectorAll('#star-rating-input input');
+
+    // Re-order star labels to work left-to-right visually
+    // since HTML has 5,4,3,2,1 order - we use flex-direction:row to show them
+    // and handle active state with JS
+    document.getElementById('star-rating-input').style.flexDirection = 'row';
+    // Reverse the DOM order so star 1 is leftmost
+    const ratingContainer = document.getElementById('star-rating-input');
+    const children = Array.from(ratingContainer.children).reverse();
+    children.forEach(c => ratingContainer.appendChild(c));
+
+    // Update star highlights
+    function updateStars(rating) {
+      selectedRating = rating;
+      document.querySelectorAll('#star-rating-input label').forEach((lbl, i) => {
+        const val = parseInt(lbl.previousElementSibling ? lbl.previousElementSibling.value : lbl.nextElementSibling.value) || (i + 1);
+        lbl.classList.toggle('active', false);
+      });
+      document.querySelectorAll('#star-rating-input input').forEach(inp => {
+        const lbl = document.querySelector(`label[for="${inp.id}"]`);
+        if (parseInt(inp.value) <= rating) {
+          lbl.classList.add('active');
+        } else {
+          lbl.classList.remove('active');
+        }
+      });
+    }
+
+    // Set default 5 stars
+    updateStars(5);
+    document.querySelectorAll('#star-rating-input input').forEach(inp => {
+      inp.addEventListener('change', function() {
+        updateStars(parseInt(this.value));
+      });
+    });
+
+    // ── Live Preview ──
+    const nameInput    = document.getElementById('audience-name');
+    const companyInput = document.getElementById('audience-company');
+    const msgInput     = document.getElementById('audience-message');
+    const previewText  = document.getElementById('preview-text');
+    const previewAvatar = document.getElementById('preview-avatar');
+    const previewName  = document.getElementById('preview-name');
+    const previewComp  = document.getElementById('preview-company');
+
+    function updatePreview() {
+      const n = nameInput.value.trim();
+      const c = companyInput.value.trim();
+      const m = msgInput.value.trim();
+      previewText.innerHTML = m ? m : '<em>Ulasan Anda akan muncul di sini...</em>';
+      previewName.textContent = n || 'Nama Anda';
+      previewComp.textContent = c || 'Perusahaan';
+      previewAvatar.textContent = n ? n.charAt(0).toUpperCase() : '?';
+    }
+    nameInput.addEventListener('input', updatePreview);
+    companyInput.addEventListener('input', updatePreview);
+    msgInput.addEventListener('input', updatePreview);
+
+    // ── Build card HTML ──
+    function buildCardHTML(data, isNew) {
+      const stars = Array.from({length: 5}, (_, i) => {
+        const active = i < (data.rating || 5);
+        return `<svg viewBox="0 0 24 24" style="${active ? '' : 'fill:rgba(255,255,255,0.15);color:rgba(255,255,255,0.15)'}"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+      }).join('');
+      const initial = (data.name || '?').charAt(0).toUpperCase();
+      const newBadge = isNew ? '<div class="audience-card-new">NEW</div>' : '';
+      return `
+        <div class="audience-card">
+          ${newBadge}
+          <div class="audience-card-stars">${stars}</div>
+          <div class="audience-card-text">${escapeHtml(data.message || '')}</div>
+          <div class="audience-card-footer">
+            <div class="audience-card-avatar">${initial}</div>
+            <div>
+              <div class="audience-card-name">${escapeHtml(data.name || 'Anonim')}</div>
+              <div class="audience-card-company">${escapeHtml(data.company || '')}</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ── Load & Sync Ticker from Firebase ──
+    let firebaseCards = [];
+
+    assessRef.on('value', function(snap) {
+      firebaseCards = [];
+      snap.forEach(function(child) {
+        firebaseCards.push(child.val());
+      });
+      rebuildTicker();
+    });
+
+    function rebuildTicker() {
+      const ticker = document.getElementById('testimonial-ticker');
+      if (!ticker) return;
+
+      // Keep default placeholder cards + add firebase cards
+      // Remove old firebase-injected cards first
+      ticker.querySelectorAll('.firebase-card').forEach(el => el.remove());
+
+      // Build HTML for firebase cards (newest first)
+      const reversed = [...firebaseCards].reverse();
+      reversed.forEach((data, idx) => {
+        const div = document.createElement('div');
+        div.innerHTML = buildCardHTML(data, idx === 0);
+        const card = div.firstElementChild;
+        card.classList.add('firebase-card');
+        // Prepend after first child to show newest first in ticker
+        ticker.insertBefore(card, ticker.firstChild);
+      });
+
+      // Rebuild duplicates for infinite scroll
+      rebuildDuplicates();
+    }
+
+    function rebuildDuplicates() {
+      const ticker = document.getElementById('testimonial-ticker');
+      if (!ticker) return;
+      // Remove existing duplicates
+      ticker.querySelectorAll('.ticker-clone').forEach(el => el.remove());
+      // Clone all current cards and append for seamless loop
+      const originals = Array.from(ticker.children);
+      originals.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add('ticker-clone');
+        ticker.appendChild(clone);
+      });
+      // Adjust animation duration based on count
+      const count = originals.length;
+      const duration = Math.max(20, count * 8);
+      ticker.style.animationDuration = duration + 's';
+    }
+
+    // ── Submit Assessment ──
+    window.submitAudienceAssessment = function() {
+      const name    = document.getElementById('audience-name').value.trim();
+      const company = document.getElementById('audience-company').value.trim();
+      const message = document.getElementById('audience-message').value.trim();
+      const rating  = selectedRating;
+      const btn     = document.getElementById('btn-send-assessment');
+
+      if (!name || !message) {
+        // Shake animation on empty fields
+        if (!name) document.getElementById('audience-name').style.borderColor = 'var(--pink)';
+        if (!message) document.getElementById('audience-message').style.borderColor = 'var(--pink)';
+        setTimeout(() => {
+          document.getElementById('audience-name').style.borderColor = '';
+          document.getElementById('audience-message').style.borderColor = '';
+        }, 2000);
+        return;
+      }
+
+      btn.classList.add('sending');
+      btn.querySelector('span').textContent = 'Mengirim...';
+
+      const newEntry = {
+        name: name,
+        company: company || '',
+        message: message,
+        rating: rating,
+        timestamp: Date.now()
+      };
+
+      assessRef.push(newEntry)
+        .then(() => {
+          btn.classList.remove('sending');
+          btn.classList.add('success');
+          btn.querySelector('span').textContent = 'Terkirim! ✓';
+
+          // Reset form
+          document.getElementById('audience-name').value = '';
+          document.getElementById('audience-company').value = '';
+          document.getElementById('audience-message').value = '';
+          updateStars(5);
+          updatePreview();
+
+          setTimeout(() => {
+            btn.classList.remove('success');
+            btn.querySelector('span').textContent = 'Kirim Ulasan';
+          }, 3000);
+        })
+        .catch(() => {
+          btn.classList.remove('sending');
+          btn.querySelector('span').textContent = 'Gagal, coba lagi';
+          setTimeout(() => { btn.querySelector('span').textContent = 'Kirim Ulasan'; }, 2500);
+        });
+    };
+  }
+
+  initTestimonial();
 })();
 </script>
 </body>
